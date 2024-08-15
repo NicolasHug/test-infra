@@ -245,7 +245,7 @@ jobs:
         run: |
           set -euxo pipefail
           source "${BUILD_ENV_FILE}"
-          WHEEL_NAME=$(ls "${{ inputs.repository }}/dist/")
+          WHEEL_NAME=$(ls "${{ inputs.repository }}/dist/" | grep "\.whl$")
           echo "$WHEEL_NAME"
 
           ${CONDA_RUN} pip install "${{ inputs.repository }}/dist/$WHEEL_NAME"
