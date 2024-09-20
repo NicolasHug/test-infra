@@ -169,7 +169,8 @@ jobs:
           PYTORCH_VERSION="$(${CONDA_RUN} pip show torch | grep ^Version: | sed 's/Version:  *//')"
           export PYTORCH_VERSION
 
-          ${CONDA_RUN} python3 setup.py bdist_wheel
+          ${CONDA_RUN} python3 -m pip install build
+          ${CONDA_RUN} python3 -m build --wheel -vvv --no-isolation
       - name: Delocate wheel
         if: ${{ inputs.delocate-wheel }}
         working-directory: ${{ inputs.repository }}
